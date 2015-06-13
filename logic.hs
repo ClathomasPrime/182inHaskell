@@ -35,11 +35,5 @@ False && _ = False
 True || _ = True
 False || x = x
 
---An interesting consequence of writing these functions this
---way has to do with lazy evaluation. Think about this: if &&
---sees that its first argument is true, it just has to pass on
---its second argument as the return value; it does not have to
---evaluate the second argument. Similarly, if && encounters
---False as its first argument, it will throw the second argument
---away entirely. This demonstrates how lazy evaluation can help
---Haskellers define custom control structures.
+--(If you want, now would be a good time to take a break and
+--read about lazy evaluation over in lazy.hs)
