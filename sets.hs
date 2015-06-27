@@ -54,3 +54,9 @@ nub (a:as) = a : nub (filter (/= a) as)
 --Union should now be easy!
 union :: Eq a => [a] -> [a] -> [a]
 union xs ys = nub $ xs ++ ys
+
+
+intersection :: Eq a => [a] -> [a] -> [a]
+intersection [] _ = []
+intersection (x:xs) ys | x `elem` ys = x : intersection xs ys
+                       | otherwise = intersection xs ys

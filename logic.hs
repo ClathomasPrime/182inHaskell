@@ -35,5 +35,8 @@ False && _ = False
 True || _ = True
 False || x = x
 
---(If you want, now would be a good time to take a break and
---read about lazy evaluation over in lazy.hs)
+--(There turns out to be an important difference between 
+-- &&& and && as implemented here. You can read about it
+--in lazy.hs, which covers evaluation order in Haskell)
+
+
