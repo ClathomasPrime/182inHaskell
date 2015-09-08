@@ -45,7 +45,55 @@ nonStrict = False `and2` aComplicatedComputation
 --Evaluation resembles imperative controll flow in that
 --only the relevant branches are evaluated.
 
+myIf :: Bool -> a -> a -> a
+myIf True t _ = t
+myIf False _ f = f
 
+
+
+
+--Here's a question to ask yourself: what is the simplest
+--nonterminating computation you can think of?
+
+--Here's my answer:
+bottom = let x = x in x
+--If you try to evaluate bottom, the program says 
+--"Okay, I can do that, I just look after the 'in' and I 
+--then see that the answer is just x. Well, x is set in 
+--the let binding right over there, and it turns out x is
+--just x. So now I have to evaluate x. But I see x is x."
+--And so on ad infinitum.
+
+--Here's another question: what should the type of bottom be?
+--The answer, surprisingly, is
+bottom :: a
+--You see, there will never be any clues to what the type of 
+--bottom should be, because there will never be any data.
+--We can't say bottom should or shouldn't be an int, because
+--no bytes will every be produced to say whether that looks
+--right or wrong. There's just bottom = x, where x can also be
+--any type a, because x is just x, which is just x...
+
+--The deap truth is that any computation can fail, and thus
+--bottom "lurks" as an extra member of every type in Haskell.
+--The elements of Bool are really {True, False, bottom}.
+--The elements of () are really {(), bottom}.
+--Even Void turns out to have an inhabitant, namely bottom.
+--(You can check out Void over in typeAlgebra.hs is you like).
+
+
+--The name bottom comes from type theory and mathematics.
+--Top, symbolized T, is just (), and represents the value
+--of True within the world of types. Bottom, symbolized _|_,
+--is just Void, and represents False.
+
+--It isn't very helpful if your program loops forever and
+--doesn't provide an error message. Thus, Haskell provides
+--functions that are semantically like bottom, but stop
+--execution so you can see what went wrong. These functions are:
+
+--error :: String -> a
+--undefined :: a
 
 
 
