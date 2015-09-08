@@ -45,6 +45,10 @@ nonStrict = False `and2` aComplicatedComputation
 --Evaluation resembles imperative controll flow in that
 --only the relevant branches are evaluated.
 
+myIf :: Bool -> a -> a -> a
+myIf True t _ = t
+myIf False _ f = f
+
 
 
 
